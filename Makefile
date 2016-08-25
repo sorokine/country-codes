@@ -37,6 +37,9 @@ country-codes.csv: data/country-codes.json data/geoname.csv data/edgar.csv
 	csvsort --no-inference -c "name" data/country-codes-reordered.csv > data/country-codes-reordered-sorted.csv
 	cp data/country-codes-reordered-sorted.csv data/country-codes.csv
 
+country-codes.sql: country-codes.csv
+	psql < csv2postgre.sql
+
 clean:
 	@rm data/*.json
 	@rm data/*.csv
